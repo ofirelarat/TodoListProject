@@ -6,8 +6,16 @@ import Exceptions.ToDoListDaoException;
 import Model.*;
 import Model.Item.Status;
 
+/**
+ * Class Test that checking the hibernateToDoListDAO 
+ * @author chen & ofir
+ *
+ */
 public class HibernateTest
 {
+	/**
+	 * Test method
+	 */
 	@Test
 	public void test()
 	{

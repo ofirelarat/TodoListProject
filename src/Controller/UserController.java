@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.research.ws.wadl.Request;
+
 import Exceptions.ToDoListDaoException;
 import Model.HibernateToDoListDAO;
 import Model.IToDoListDAO;
@@ -17,6 +19,11 @@ import Model.Item;
 import Model.Item.Status;
 import Model.User;
 
+/**
+ * The controller which manage the the HTTPservlet request and response and connecting between the view and the model.
+ * @author chen & ofir
+ *
+ */
 
 @WebServlet("/userController/*")
 public class UserController extends HttpServlet
@@ -78,6 +85,8 @@ public class UserController extends HttpServlet
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
+				dispatcher.forward(request, response);
 			}
 			try
 			{
@@ -86,6 +95,8 @@ public class UserController extends HttpServlet
 			{
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+				dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
+				dispatcher.forward(request, response);
 			}
 			dispatcher = getServletContext().getRequestDispatcher("/Home.jsp");
 			dispatcher.forward(request, response);
@@ -132,6 +143,7 @@ public class UserController extends HttpServlet
 						//resp.sendRedirect("home");
 					}
 					else{
+						req.setAttribute("cantLog", true);
 						dispatcher = getServletContext().getRequestDispatcher("/LogIn.jsp");
 						dispatcher.forward(req, resp);
 					}
@@ -140,6 +152,8 @@ public class UserController extends HttpServlet
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
+					dispatcher.forward(req, resp);
 				}
 			
 				break;
@@ -149,6 +163,7 @@ public class UserController extends HttpServlet
 				password = req.getParameter("password");
 				String firstName = req.getParameter("firstName");
 				String lastName = req.getParameter("lastName");
+				String confirmPassword = req.getParameter("confirmPassword");
 				user = new User(email,firstName,lastName,password);
 				
 				try{
@@ -162,6 +177,8 @@ public class UserController extends HttpServlet
 				}catch (ToDoListDaoException e) {
 					// TODO: handle exception
 					e.printStackTrace();
+					dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
+					dispatcher.forward(req, resp);
 				}
 				
 				break;
@@ -180,6 +197,8 @@ public class UserController extends HttpServlet
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
+					dispatcher.forward(req, resp);
 				}
 				
 				dispatcher = getServletContext().getRequestDispatcher("/Home.jsp");
@@ -208,6 +227,8 @@ public class UserController extends HttpServlet
 				{
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
+					dispatcher.forward(req, resp);
 				}
 				
 				dispatcher = getServletContext().getRequestDispatcher("/Home.jsp");
@@ -229,6 +250,8 @@ public class UserController extends HttpServlet
 					{
 						// TODO Auto-generated catch block
 						e.printStackTrace();
+						dispatcher = getServletContext().getRequestDispatcher("/ErrorPage.jsp");
+						dispatcher.forward(req, resp);
 					} 
 					
 					req.getSession().invalidate();

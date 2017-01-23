@@ -28,7 +28,7 @@
 
 function callUpdateForm(id,title,content,status)
 {
-	document.getElementById("updateForm").style.visibility = 'visible';
+	//document.getElementById("updateForm").style.visibility = 'visible';
 	document.getElementById("id").value=id;
 	document.getElementById("title").value=title;
 	document.getElementById("content").value=content;
@@ -53,7 +53,7 @@ if(user != null){
 			<form action="deleteItem">
 			<input type="hidden" name="itemId" value=<%=String.valueOf(item.getId())%>><input type="submit" class="btn-danger" value="delete item"></form> 
 			</td>
-			<td> <input type="button" class="btn-warning" value="edit" onclick="callUpdateForm('<%= item.getId()%>','<%= item.getTitle()%>','<%= item.getContent()%>','<%= item.getStatus().toString()%>')"> </td>
+			<td> <input type="button" class="btn-warning" value="edit" onclick="callUpdateForm('<%= item.getId()%>','<%= item.getTitle()%>','<%= item.getContent()%>','<%= item.getStatus().toString()%>')" data-toggle="modal" data-target="#updateForm"> </td>
 			</tr><% 
 		}
 		
@@ -101,9 +101,6 @@ else{
 						</div>
                     </form>
                 </div>
-
-               
-
             </div>
         </div>
     </div>
@@ -114,12 +111,17 @@ else{
 <br/>
 
 
-<div id="updateForm" style="visibility: hidden">
-<!-- header -->
-                <div class="modal-header">
-                    <h3 class="modal-title">Edit Item</h3>
-   </div>
 
+<div class="modal fade" id="updateForm">
+ <div class="modal-dialog">
+             <div class="modal-content">
+<!-- header -->
+     <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal">&times;</button>
+    	 <h3 class="modal-title">Edit Item</h3>
+	 </div>
+	 
+ <div class="modal-body">
 <form action="editItem" method="post">
 	<input type="hidden" name="id" id="id">
 	 <div class="form-group">
@@ -136,10 +138,14 @@ else{
 	</select>
 		 </div>
 	<div class="modal-footer">
-	<input type="submit" class = "btn-success" value="submit">
+	<input type="submit" class = "btn btn-primary btn-block" value="submit">
 	</div>
 </form>
 </div>
+</div>
+</div>
+</div>
+
 
 <div>
 <tags:helloTag name='<%= ((User)request.getSession().getAttribute("logedUser")).getFirstName() %>'/>

@@ -25,7 +25,7 @@
                     <h3 class="modal-title">Register</h3>
    </div>
    </div>
-<form action="register" method="post">
+<form action="register"   method="post">
 					 <div class="form-group">
                          <input type="text" class="form-control" placeholder="First Name" name="firstName">
                      </div>
@@ -41,14 +41,11 @@
                      <div class="form-group">
                          <input type="password" class="form-control" placeholder="Password" name="password">
                      </div>
-			
 			 <!-- button -->
 			<div class="modal-footer">
 				<button class="btn btn-primary btn-block">Submit</button>
 			</div>
                  </form>
-
-
 <div>
 <tags:helloTag/>
 </div>

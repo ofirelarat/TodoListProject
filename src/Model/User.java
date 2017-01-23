@@ -54,41 +54,82 @@ public class User
 	{
 		this.id = id;
 	}
+	
+	/**
+	 * 
+	 * @return the email of the user
+	 */
 	public String getEmail()
 	{
 		return email;
 	}
-
+	
+	/**
+	 * 
+	 * @param email
+	 */
 	public void setEmail(String email)
 	{
 		this.email = email;
 	}
-
+	
+	/**
+	 * 
+	 * @return first name of the user
+	 */
 	public String getFirstName()
 	{
 		return firstName;
 	}
+	
+	/**
+	 * 
+	 * @param firstName
+	 */
+	
 	public void setFirstName(String firstName)
 	{
 		this.firstName = firstName;
 	}
+	
+	/**
+	 * 
+	 * @return last name of the user
+	 */
 	public String getLastName()
 	{
 		return lastName;
 	}
+	
+	/**
+	 * 
+	 * @param lastName
+	 */
 	public void setLastName(String lastName)
 	{
 		this.lastName = lastName;
 	}
+	/**
+	 * 
+	 * @return the password of the user
+	 */
 	public String getPassword()
 	{
 		return password;
 	}
+	
+	/**
+	 * 
+	 * @param password
+	 */
 	public void setPassword(String password)
 	{
 		this.password = password;
 	}
 
+	/**
+	 * to string method
+	 */
 	@Override
 	public String toString()
 	{

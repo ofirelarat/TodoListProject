@@ -39,6 +39,9 @@
 				<button class="btn btn-primary btn-block">Submit</button>
 			</div>
                  </form>
+                 <% if(request.getAttribute("cantLog")!=null){
+                	 out.print("<h4><font color='red'>Wrong email or password. Try again</font><h4>");
+                 } %>
 		</div>
 		
 		<div class="modal-footer">

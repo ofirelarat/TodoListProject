@@ -13,6 +13,12 @@ import Model.User;
 @Path("/user")
 public class RESTController
 {
+	@GET
+	@Produces("text/plain")
+	public String hello(){
+		return "hello";
+	}
+	
 	@Path("/{userid}")
 	@GET
 	@Produces("text/plain")
