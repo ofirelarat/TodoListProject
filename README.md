@@ -18,7 +18,7 @@ The view is JSP pages using bootstrap.
  
  <br />
  
- <img src="http://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_login.png" height="150" width="70"/><br /><br />
- <img src="http://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_register.png" height="150" width="70"/><br /><br />
- <img src="http://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_home.png" height="150" width="70"/><br /><br />
- <img src="http://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_add_item.png height="150" width="70"/>
+ <img src="/images/screenshot_login.png" height="150" width="70" alt="hi" class="inline"/>
+ <img src="/images/screenshot_register.png" height="150" width="70" alt="hi" class="inline"/>
+ <img src="/images/screenshot_home.png" height="150" width="70" alt="hi" class="inline"/>
+ <img src="/images/screenshot_add_item.png height="150" width="70" alt="hi" class="inline"/>
