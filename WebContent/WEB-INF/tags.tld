@@ -10,7 +10,7 @@ version="2.0">
  <tag>
  <description>hello tag</description>
  <name>helloTag</name>
- <tag-class>Tags.HelloTag</tag-class>
+ <tag-class>com.view.tags.HelloTag</tag-class>
  <body-content>empty</body-content>
  <attribute>
  <name>name</name>

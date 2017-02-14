@@ -1,6 +1,6 @@
-<%@page import="Model.User"%>
+<%@page import="com.main.model.User"%>
 <%@ page language="java" contentType="text/html; charset=windows-1255"
-    pageEncoding="windows-1255" errorPage="ErrorPage.jsp"%>
+    pageEncoding="windows-1255" errorPage="errorpage.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,7 +18,7 @@
 <body>
 <%@taglib uri="WEB-INF/tags.tld" prefix="tags"%>
 
-<jsp:include page="NavbarLogedUser.html"></jsp:include>
+<jsp:include page="navbarlogeduser.html"></jsp:include>
 
 <div class="container" style="max-width:800px; margin:50px auto;" >
 
@@ -48,9 +48,13 @@
 			</div>
                  </form>
 
-<div>
-<tags:helloTag name='<%= ((User)session.getAttribute("logedUser")).getFirstName() %>'/>
+
+<hr/>				
+<div>	
+	<tags:helloTag name='<%= ((User)session.getAttribute("logedUser")).getFirstName() %>'/><br/>
+	<a href="https://ofirelarat.github.io/TodoListProject/">github page</a>
 </div>
+
 
 </div>
 </body>

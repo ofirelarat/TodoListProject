@@ -7,10 +7,15 @@
 			com.mysql.jdbc.Driver
 		</property>
 		<property name="hibernate.connection.url">
-			jdbc:mysql://localhost:3307/todolistdb
+			<!--  jdbc:mysql://localhost:3307/todolistdb -->
+				jdbc:mysql://eu-cdbr-azure-west-d.cloudapp.net:3306/todolistdb
 		</property>
-		<property name="hibernate.connection.username">ChenAndOfir</property>
-		<property name="hibernate.connection.password">123456</property>
+		<!-- <property name="hibernate.connection.username">ChenAndOfir</property>  -->
+		<!-- <property name="hibernate.connection.password">123456</property> -->
+		
+		<property name="hibernate.connection.username">be37f2368b3344</property>
+		<property name="hibernate.connection.password">90f7783e</property>
+		
 		<property name="show_sql">true</property>
 		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
