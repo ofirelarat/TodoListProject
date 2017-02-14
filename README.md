@@ -18,7 +18,7 @@ The view is JSP pages using bootstrap.
  
  <br />
  
- <img src="/images/screenshot_login.png" height="500" width="300"/> 
- <img src="/images/screenshot_register.png" height="500" width="300"/> <br/><br/>
- <img src="/images/screenshot_home.png" height="500" width="300"/> 
+ <img src="http://i67.tinypic.com/28jb9tu.png" height="500" width="300"/> 
+ <img src="http://i67.tinypic.com/dgi35e.png" height="500" width="300"/> <br/><br/>
+ <img src="http://i68.tinypic.com/24qo4fr.png" height="500" width="300"/> 
  <img src="http://i66.tinypic.com/2vuarlz.png" height="500" width="300"/>
