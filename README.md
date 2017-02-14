@@ -16,7 +16,9 @@ The view is JSP pages using bootstrap.
  - Edit user items
  - Delete user items
  
- <img src="https://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_login.png" height="150" width="70"/><br /><br />
- <img src="https://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_register.png" height="150" width="70"/><br /><br />
- <img src="https://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_home.png" height="150" width="70"/><br /><br />
- <img src="https://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_add_item.png height="150" width="70"/>
+ <br />
+ 
+ <img src="http://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_login.png" height="150" width="70"/><br /><br />
+ <img src="http://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_register.png" height="150" width="70"/><br /><br />
+ <img src="http://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_home.png" height="150" width="70"/><br /><br />
+ <img src="http://github.com/ofirelarat/TodoListProject/tree/master/images/screenshot_add_item.png height="150" width="70"/>
