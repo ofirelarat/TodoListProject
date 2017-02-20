@@ -37,7 +37,7 @@ function callUpdateForm(id,title,content,status)
 
 </script>
 
-<div class="container" style="max-width:700px; margin:50px auto;" >
+<div class="container" style="max-width:600px; margin:50px auto;" >
 <%
 User user = (User)request.getSession().getAttribute("logedUser");
 if(user != null){
