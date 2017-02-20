@@ -20,7 +20,7 @@
 
 <jsp:include page="navbarlogeduser.html"></jsp:include>
 
-<div class="container" style="max-width:800px; margin:50px auto;" >
+<div class="container" style="max-width:700px; margin:50px auto;" >
 
 <div class="modal-body">
 <!-- header -->
