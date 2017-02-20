@@ -50,7 +50,7 @@ if(user != null){
 		for(Item item : items){
 			%><tr> <td> <%=String.valueOf(item.getTitle())%></td><td><%=String.valueOf(item.getContent())%></td><td><%=String.valueOf(item.getStatus())%></td>
 			<td>
-			<form action="deleteItem">
+			<form action="deleteItem" method="post">
 			<input type="hidden" name="itemId" value=<%=String.valueOf(item.getId())%>><input type="submit" class="btn-danger" value="delete item"></form> 
 			</td>
 			<td> <input type="button" class="btn-warning" value="edit" onclick="callUpdateForm('<%= item.getId()%>','<%= item.getTitle()%>','<%= item.getContent()%>','<%= item.getStatus().toString()%>')" data-toggle="modal" data-target="#updateForm"> </td>
@@ -87,7 +87,7 @@ else{
                 <div class="modal-body">
                     <form action="addItem" method="post">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Title" name="title" id="title">
+                            <input type="text" class="form-control" placeholder="Title" name="title">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Content" name="content">

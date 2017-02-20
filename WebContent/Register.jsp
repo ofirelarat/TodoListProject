@@ -47,6 +47,9 @@
 			</div>
                  </form>
                  
+                    <% if(request.getAttribute("cantReg")!=null){
+                	 out.print("<h4><font color='red'>Wrong email or password. Try again</font><h4>");
+                 } %>
 <hr/>				
 <div>	
 	<tags:helloTag/><br/>

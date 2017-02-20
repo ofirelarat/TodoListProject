@@ -16,6 +16,8 @@ import com.main.model.Item;
 import com.main.model.User;
 import com.main.model.Item.Status;
 
+import javassist.bytecode.stackmap.BasicBlock.Catch;
+
 /**
  * The controller which manage the the HTTPservlet request and response and connecting between the view and the model.
  * @author chen & ofir
@@ -76,32 +78,6 @@ public class UserController extends HttpServlet
 			
 			break;
 			
-		//delete a specific item and updating the home page	
-		case "/deleteItem":
-			String id = request.getParameter("itemId");
-			try
-			{
-				DAO.deleteItem(Integer.valueOf(id));
-			} catch (ToDoListDaoException e)
-			{
-				e.printStackTrace();
-				dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
-				dispatcher.forward(request, response);
-			}
-			try
-			{
-				request.setAttribute("items", DAO.getItemsOfUser((User)request.getSession().getAttribute("logedUser")));
-			} catch (ToDoListDaoException e)
-			{
-				e.printStackTrace();
-				dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
-				dispatcher.forward(request, response);
-			}
-			dispatcher = getServletContext().getRequestDispatcher("/home.jsp");
-			dispatcher.forward(request, response);
-			
-			break;
-			
 		//forwarding to editing user page.
 		case "/edituser":
 			dispatcher = getServletContext().getRequestDispatcher("/edituser.jsp");
@@ -158,6 +134,9 @@ public class UserController extends HttpServlet
 					
 				} catch (ToDoListDaoException e)
 				{
+					dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
+					dispatcher.forward(req, resp);
+				}catch(Exception e){
 					e.printStackTrace();
 					dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
 					dispatcher.forward(req, resp);
@@ -174,14 +153,22 @@ public class UserController extends HttpServlet
 				user = new User(email,firstName,lastName,password);
 				
 				try{
-					
-				if(DAO.addUser(user))
-				{
-					dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
-					dispatcher.forward(req, resp);
-				}
+					if(email.isEmpty() || password.isEmpty()){
+						req.setAttribute("cantReg", true);
+						dispatcher = getServletContext().getRequestDispatcher("/register.jsp");
+						dispatcher.forward(req, resp);
+					}
+					else if(DAO.addUser(user))
+					{
+						dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
+						dispatcher.forward(req, resp);
+					}
 				
 				}catch (ToDoListDaoException e) {
+					e.printStackTrace();
+					dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
+					dispatcher.forward(req, resp);
+				}catch(Exception e){
 					e.printStackTrace();
 					dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
 					dispatcher.forward(req, resp);
@@ -202,6 +189,10 @@ public class UserController extends HttpServlet
 					req.setAttribute("items", items);
 				} catch (ToDoListDaoException e)
 				{
+					e.printStackTrace();
+					dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
+					dispatcher.forward(req, resp);
+				}catch(Exception e){
 					e.printStackTrace();
 					dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
 					dispatcher.forward(req, resp);
@@ -235,6 +226,10 @@ public class UserController extends HttpServlet
 					e.printStackTrace();
 					dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
 					dispatcher.forward(req, resp);
+				}catch(Exception e){
+					e.printStackTrace();
+					dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
+					dispatcher.forward(req, resp);
 				}
 				
 				dispatcher = getServletContext().getRequestDispatcher("/home.jsp");
@@ -258,7 +253,11 @@ public class UserController extends HttpServlet
 						e.printStackTrace();
 						dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
 						dispatcher.forward(req, resp);
-					} 
+					} catch(Exception e){
+						e.printStackTrace();
+						dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
+						dispatcher.forward(req, resp);
+					}
 					
 					req.getSession().invalidate();
 					dispatcher = getServletContext().getRequestDispatcher("/login.jsp");
@@ -266,6 +265,28 @@ public class UserController extends HttpServlet
 					
 					break;
 				
+					//delete a specific item and updating the home page	
+				case "/deleteItem":
+					String id = req.getParameter("itemId");
+					try
+					{
+						DAO.deleteItem(Integer.valueOf(id));
+						req.setAttribute("items", DAO.getItemsOfUser((User)req.getSession().getAttribute("logedUser")));
+					} catch (ToDoListDaoException e)
+					{
+						dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
+						dispatcher.forward(req, resp);
+					} catch(Exception e){
+						e.printStackTrace();
+						dispatcher = getServletContext().getRequestDispatcher("/errorpage.jsp");
+						dispatcher.forward(req, resp);
+					}
+					
+					dispatcher = getServletContext().getRequestDispatcher("/home.jsp");
+					dispatcher.forward(req, resp);
+					
+					break;
+					
 			default:
 			super.doPut(req, resp);
 		}

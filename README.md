@@ -16,8 +16,7 @@ The view is JSP pages using bootstrap.
  - Edit user items
  - Delete user items
  
- <br />
- 
+
  <img src="http://i67.tinypic.com/28jb9tu.png" height="500" width="300"/> 
  <img src="http://i67.tinypic.com/dgi35e.png" height="500" width="300"/> <br/><br/>
  <img src="http://i68.tinypic.com/24qo4fr.png" height="500" width="300"/> 
