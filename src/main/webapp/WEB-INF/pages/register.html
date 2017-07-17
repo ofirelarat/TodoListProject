@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="windows-1255">
+	<title>Todo List</title>
+	<link rel="icon" 
+      type="image/png" 
+      href="pages/images/todolist-icon.png">
+      
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+	    
+	<!-- Custom styles for this template -->          
+	<link href="pages/style.css" rel="stylesheet">
+</head>
+<body>
+	
+	<div class="colored-background-section">
+            <div class="color-wrapper">
+            	<img class="responsive-img" src="pages/images/todolist-icon.png" />
+                <h3 class="summery-text"><b>ToDo List Website</b></h3>
+            </div>
+    </div>
+    
+    <div class="container small-container">
+	
+	 <div class="card">
+            <div class="card-content">
+              <span class="card-title">Register</span>
+              
+				 <div class="row">
+				    <form action="/register" method="post" class="col s12">
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input name="email" placeholder="Email" type="email">
+				        </div>
+				      </div>
+				      
+				       <div class="row">
+				        <div class="input-field col s12">
+				          <input name="password" placeholder="Password" type="password">
+				        </div>
+				      </div>
+				      
+				       <div class="row">
+				        <div class="input-field col s12">
+				          <input name="firstName" placeholder="First Name" type="text">
+				        </div>
+				      </div>
+				      
+				       <div class="row">
+				        <div class="input-field col s12">
+				          <input name="lastName" placeholder="Last Name" type="text">
+				        </div>
+				      </div>
+				      
+					  <button class="btn waves-effect waves-light" type="submit">REGISTER
+    					<i class="material-icons right">send</i>
+  					  </button>
+				    </form>
+				  </div>
+				  
+			  </div>
+			  <div class="card-action">
+			  	<a href="/login">already registered</a>
+			  </div>
+		  </div>
+        
+  	</div>
+	
+</body>
+</html>
