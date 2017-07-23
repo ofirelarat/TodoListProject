@@ -20,6 +20,8 @@ public interface IToDoListDAO
 	
 	public void deleteUser(int id) throws ToDoListDaoException;
 	
+	public User[] getAllUsers() throws ToDoListDaoException;
+	
 	// Items Table methods
 	
 	public void addItem(Item temp) throws ToDoListDaoException;

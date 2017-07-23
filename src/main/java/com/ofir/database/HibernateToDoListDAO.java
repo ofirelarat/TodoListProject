@@ -159,6 +159,17 @@ public class HibernateToDoListDAO implements IToDoListDAO
 			session.close();
 		}
 	}
+	
+	@Override
+	public User[] getAllUsers() throws ToDoListDaoException {
+		Session session = factory.openSession();
+		List users = null;
+		session.beginTransaction();
+		users = session.createCriteria(User.class).list();
+		User[] userssArr = new User[users.size()];
+		users.toArray(userssArr);
+		return userssArr;
+	}
 
 	private boolean IsExistUser(String email) throws ToDoListDaoException
 	{
@@ -301,5 +312,4 @@ public class HibernateToDoListDAO implements IToDoListDAO
 		items.toArray(itemsArray);
 		return itemsArray;
 	}
-
 }
