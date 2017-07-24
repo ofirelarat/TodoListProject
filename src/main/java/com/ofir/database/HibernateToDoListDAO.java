@@ -312,4 +312,15 @@ public class HibernateToDoListDAO implements IToDoListDAO
 		items.toArray(itemsArray);
 		return itemsArray;
 	}
+
+	@Override
+	public Item[] getAllItems() throws ToDoListDaoException {
+		Session session = factory.openSession();
+		List items = null;
+		session.beginTransaction();
+		items = session.createCriteria(Item.class).list();
+		Item[] itemsArr = new Item[items.size()];
+		items.toArray(itemsArr);
+		return itemsArr;
+	}
 }

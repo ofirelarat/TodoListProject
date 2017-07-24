@@ -33,4 +33,6 @@ public interface IToDoListDAO
 	public Item findItem(int id) throws ToDoListDaoException;
 	
 	public Item[] getItemsOfUser(User user) throws ToDoListDaoException;
+	
+	public Item[] getAllItems() throws ToDoListDaoException;
 }
