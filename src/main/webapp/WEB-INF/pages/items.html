@@ -12,9 +12,8 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
 	<!-- Compiled and minified JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
-	
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>
 	    
 	<!-- Custom styles for this template -->          
 	<link href="pages/style.css" rel="stylesheet">
@@ -32,91 +31,86 @@
 
 		<div class="container small-container" style="margin-bottom: 50px">
 		
-			<ul class="collection">
-	    		<li class="collection-item" style="display:none" id="item1">
-	      			<h4 class="title" id="title1">Title</h4>
-	      			<h6 id="content1">First Line </h6>
-	      			<form action="deleteItem" method="post">
-	      				<input type="hidden" id="itemId1" name="itemId"/>
-	      				  <button class="btn waves-effect waves-light secondary-content" type="submit">
-	    					<i class="material-icons">delete</i>
-	  					  </button>
-	         		</form>
-	         		<p id="status1" style="font-style: oblique;">Second Line</p>
-	    		</li>
-			
-				<li class="collection-item" style="display:none" id="item2">
-	      			<h4 class="title" id="title2">Title</h4>
-	      			<h6 id="content2">First Line </h6>
-					<form action="deleteItem" method="post">
-	      				<input type="hidden" id="itemId2" name="itemId"/>
-	      				  <button class="btn waves-effect waves-light secondary-content" type="submit">
-	    					<i class="material-icons">delete</i>
-	  					  </button>
-	         		</form>	         	
-	         		<p id="status2" style="font-style: oblique;">Second Line</p>
-	    		</li>
+			<div class="card">
+				<ul class="collection">
+		    		<li class="collection-item" style="display:none" id="item1">
+		      			<h4 class="title" id="title1">Title</h4>
+		      			<h6 id="content1">First Line </h6>
+		      			<form action="deleteItem" method="post">
+		      				<input type="hidden" id="itemId1" name="itemId"/>
+		      				  <button class="btn waves-effect waves-light secondary-content" type="submit">
+		    					<i class="material-icons">delete</i>
+		  					  </button>
+		         		</form>
+		         		<p id="status1" style="font-style: oblique;">Second Line</p>
+		    		</li>
+				
+					<li class="collection-item" style="display:none" id="item2">
+		      			<h4 class="title" id="title2">Title</h4>
+		      			<h6 id="content2">First Line </h6>
+						<form action="deleteItem" method="post">
+		      				<input type="hidden" id="itemId2" name="itemId"/>
+		      				  <button class="btn waves-effect waves-light secondary-content" type="submit">
+		    					<i class="material-icons">delete</i>
+		  					  </button>
+		         		</form>	         	
+		         		<p id="status2" style="font-style: oblique;">Second Line</p>
+		    		</li>
+		    		
+		    		<li class="collection-item" style="display:none" id=item3>
+		      			<h4 class="title" id="title3">Title</h4>
+		      			<h6 id="content3">First Line </h6>
+		      			<form action="deleteItem" method="post">
+		      				<input type="hidden" id="itemId3" name="itemId"/>
+		      				  <button class="btn waves-effect waves-light secondary-content" type="submit">
+		    					<i class="material-icons">delete</i>
+		  					  </button>
+		         		</form>
+		         		<p id="status3" style="font-style: oblique;">Second Line</p>
+		    		</li>	
+	    		</ul>    		
 	    		
-	    		<li class="collection-item" style="display:none" id=item3>
-	      			<h4 class="title" id="title3">Title</h4>
-	      			<h6 id="content3">First Line </h6>
-	      			<form action="deleteItem" method="post">
-	      				<input type="hidden" id="itemId3" name="itemId"/>
-	      				  <button class="btn waves-effect waves-light secondary-content" type="submit">
-	    					<i class="material-icons">delete</i>
-	  					  </button>
-	         		</form>
-	         		<p id="status3" style="font-style: oblique;">Second Line</p>
-	    		</li>
-    		</ul>    		
-    	
+		    	<a href="#modal1" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></a>
+    		</div>
+    		
 	    	 <ul class="pagination" style="text-align: center" id="pageNumsList">
 	    		<li><a href="javascript:prevPage()"><i class="material-icons">chevron_left</i></a></li>
 	    		<li class="active" id="page1"><a>1</a></li>
 	  		</ul>
-
 		</div>
 
-
-		<div class="container medium-container">
-			<div class="horizontal card">
-				<div class="card-image">
-        			<img src="pages/images/todo-item.png" style="width: 275px;height: 365px;margin:20px">
-      			</div>
-      			<div class="card-stacked">
-		            <div class="card-content">
-		              <span class="card-title">Add Item</span>
-		              
-						 <div class="row">
-						    <form action="/addItem" method="post" class="col s12">
-						      <div class="row">
-						        <div class="input-field col s12">
-						          <input name="title" placeholder="Title" type="text">
-						        </div>
-						      </div>
-						      
-						       <div class="row">
-						        <div class="input-field col s12">
-						          <input name="content" placeholder="Content" type="text">
-						        </div>
-						      </div>
-						      
-						      <div class="row">
-							    <select name="status" class="browser-default">
-							      <option value="ready" selected>Ready</option>
-							      <option value="inProgress">In Progress</option>
-							      <option value="done">Done</option>
-							    </select>
-							  </div>
-											      
-							  <button class="btn waves-effect waves-light" type="submit">ADD
-		    					<i class="material-icons right">send</i>
-		  					  </button>
-						    </form>
-						  </div>
-				  		</div>
-				  	</div>
-			 </div>
+		<!-- Modal Structure -->
+		<div id="modal1" class="modal modal-fixed-footer">
+			<form action="/addItem" method="post" class="col s12">
+	 			<div class="modal-content">
+			    	<h4>Add Item</h4>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input name="title" placeholder="Title" type="text">
+				        </div>
+				      </div>
+				      
+				       <div class="row">
+				        <div class="input-field col s12">
+				          <input name="content" placeholder="Content" type="text">
+				        </div>
+				      </div>
+				      
+				      <div class="row">
+					    <select name="status" class="browser-default">
+					      <option value="ready" selected>Ready</option>
+					      <option value="inProgress">In Progress</option>
+					      <option value="done">Done</option>
+					    </select>
+					  </div>
+	  			</div>
+			  <div class="modal-footer">
+			        <a class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+					<button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit">ADD
+	   					<i class="material-icons right">send</i>
+					</button>
+			  </div>
+		  </form>
 		</div>
 </body>
 </html>

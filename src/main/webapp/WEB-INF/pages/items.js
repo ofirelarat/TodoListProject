@@ -131,3 +131,7 @@ var itemsStrArray = [];
 					$('#page'+index/3).addClass("active");
 				}
 			}
+			
+			$(document).ready(function(){
+				  $('.modal-trigger').leanModal();
+				});
