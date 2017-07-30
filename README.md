@@ -9,3 +9,4 @@ In this website you will manage your todo items.
   - Register
   - Add todo item
   - Delete todo item
+  - Edit todo item
