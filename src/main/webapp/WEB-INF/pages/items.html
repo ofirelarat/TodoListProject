@@ -22,6 +22,20 @@
 
 		<script src="pages/items.js"></script>
 		
+		<script>
+			function editItemDialog(itemNum){
+				var title = document.getElementById("titleModal");
+				var content = document.getElementById("contentModal");
+				var status = document.getElementById("statusModal");
+				var id = document.getElementById("itemIdModal");
+				
+				title.value = document.getElementById("title" + itemNum).innerHTML;
+				content.value = document.getElementById("content" + itemNum).innerHTML;
+				status.value = document.getElementById("status" + itemNum).innerHTML;
+				id.value = document.getElementById("itemId" + itemNum).value;
+			}
+		</script>
+		
 		<div class="colored-background-section">
             <div class="color-wrapper">
             	<img class="responsive-img" src="pages/images/todolist-icon.png" />
@@ -38,7 +52,8 @@
 		      			<h6 id="content1">First Line </h6>
 		      			<form action="deleteItem" method="post">
 		      				<input type="hidden" id="itemId1" name="itemId"/>
-		      				  <button class="btn waves-effect waves-light secondary-content" type="submit">
+		      				  <button onclick="editItemDialog(1)" href="#modalEdit" class="btn-floating waves-effect waves-light secondary-content modal-trigger" style="margin-left: 5px" type="button"><i class="material-icons">edit</i></button>
+		      				  <button class="btn-floating waves-effect waves-light secondary-content" type="submit">
 		    					<i class="material-icons">delete</i>
 		  					  </button>
 		         		</form>
@@ -50,7 +65,8 @@
 		      			<h6 id="content2">First Line </h6>
 						<form action="deleteItem" method="post">
 		      				<input type="hidden" id="itemId2" name="itemId"/>
-		      				  <button class="btn waves-effect waves-light secondary-content" type="submit">
+   						      <button onclick="editItemDialog(2)" href="#modalEdit" class="btn-floating waves-effect waves-light secondary-content modal-trigger" style="margin-left: 5px" type="button"><i class="material-icons">edit</i></button>
+		      				  <button class="btn-floating waves-effect waves-light secondary-content" type="submit">
 		    					<i class="material-icons">delete</i>
 		  					  </button>
 		         		</form>	         	
@@ -62,15 +78,16 @@
 		      			<h6 id="content3">First Line </h6>
 		      			<form action="deleteItem" method="post">
 		      				<input type="hidden" id="itemId3" name="itemId"/>
-		      				  <button class="btn waves-effect waves-light secondary-content" type="submit">
-		    					<i class="material-icons">delete</i>
-		  					  </button>
+		      					<button onclick="editItemDialog(3)" href="#modalEdit" class="btn-floating waves-effect waves-light secondary-content modal-trigger" style="margin-left: 5px" type="button"><i class="material-icons">edit</i></button>
+		      				  	<button class="btn-floating waves-effect waves-light secondary-content" type="submit">
+		    						<i class="material-icons">delete</i>
+		  					  	</button>
 		         		</form>
 		         		<p id="status3" style="font-style: oblique;">Second Line</p>
 		    		</li>	
 	    		</ul>    		
 	    		
-		    	<a href="#modal1" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></a>
+		    	<a href="#modalAdd" class="btn-floating halfway-fab waves-effect waves-light red modal-trigger"><i class="material-icons">add</i></a>
     		</div>
     		
 	    	 <ul class="pagination" style="text-align: center" id="pageNumsList">
@@ -79,8 +96,8 @@
 	  		</ul>
 		</div>
 
-		<!-- Modal Structure -->
-		<div id="modal1" class="modal modal-fixed-footer">
+		<!-- Modal Add Structure -->
+		<div id="modalAdd" class="modal modal-fixed-footer">
 			<form action="/addItem" method="post" class="col s12">
 	 			<div class="modal-content">
 			    	<h4>Add Item</h4>
@@ -107,6 +124,42 @@
 			  <div class="modal-footer">
 			        <a class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
 					<button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit">ADD
+	   					<i class="material-icons right">send</i>
+					</button>
+			  </div>
+		  </form>
+		</div>
+		
+		
+		<!-- Modal Edit Structure -->
+		<div id="modalEdit" class="modal modal-fixed-footer">
+			<form action="/editItem" method="post" class="col s12">
+	 			<div class="modal-content">
+			    	<h4>Edit Item</h4>
+				      <div class="row">
+				        <div class="input-field col s12">
+				          <input id="titleModal" name="title" placeholder="Title" type="text">
+				        </div>
+				      </div>
+				      
+				       <div class="row">
+				        <div class="input-field col s12">
+				          <input id="contentModal" name="content" placeholder="Content" type="text">
+				        </div>
+				      </div>
+				      
+				      <div class="row">
+					    <select id="statusModal" name="status" class="browser-default">
+					      <option value="ready" selected>Ready</option>
+					      <option value="inProgress">In Progress</option>
+					      <option value="done">Done</option>
+					    </select>
+					  </div>
+	  			</div>
+			  <div class="modal-footer">
+			        <a class="modal-action modal-close waves-effect waves-red btn-flat ">Disagree</a>
+			        <input type="hidden" id="itemIdModal" name="itemId"/>
+					<button class="modal-action modal-close waves-effect waves-green btn-flat" type="submit">SAVE
 	   					<i class="material-icons right">send</i>
 					</button>
 			  </div>

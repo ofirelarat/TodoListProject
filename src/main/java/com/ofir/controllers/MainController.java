@@ -132,6 +132,26 @@ public class MainController {
 		return "redirect:/itemsPage";
 	}
 	
+	@RequestMapping(value="/editItem", method=RequestMethod.POST)
+	public String editItem(HttpServletRequest request){
+		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
+		String title = request.getParameter("title");
+		String content = request.getParameter("content");
+		String status = request.getParameter("status");
+		int id = Integer.valueOf(request.getParameter("itemId"));
+
+		User user = (User)request.getSession().getAttribute("user");
+		Item item = new Item(id,title,content,Item.Status.valueOf(status),user.getEmail());
+		try {
+			DAO.editItem(item);
+		} catch (ToDoListDaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return "redirect:/itemsPage";
+	}
+	
 	@RequestMapping(value="/deleteItem", method=RequestMethod.POST)
 	public String deleteItem(HttpServletRequest request){
 		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
