@@ -2,7 +2,7 @@
  * 
  */
 
-var itemsStrArray = [];
+			var itemsStrArray = [];
 			var index = 0;
 			$.get("/items",function(data,status){
 				itemsStrArray = data.split("-");
@@ -36,6 +36,10 @@ var itemsStrArray = [];
 				nodeClick.appendChild(nodeIco);
 				node.appendChild(nodeClick); 
 				numberListElement.appendChild(node);
+			});
+			
+			$.get("/getLoggedUserName",function(data,status){
+				document.getElementById("userNameLabel").innerHTML = "Hi, " + data;
 			});
 			
 			function renderData1(){
@@ -135,4 +139,6 @@ var itemsStrArray = [];
 			$(document).ready(function(){
 				  $('.modal-trigger').leanModal();
 				});
+			
+			
 			

@@ -66,3 +66,26 @@ body{
   	#content1 , #content2 , #content3{
   		text-size: 30px;
   	}   
+  	
+  	
+/* LOG OUT BLOCK
+-------------------------------------------------- */
+ 	.logoutBtn{
+ 		margin-top:7.25%;
+ 		margin-right: 10px;
+	 	width: 30px;
+	 	height: 30px;
+	 	color: white;
+	 	text-align: right;
+ } 	
+ 
+	 .userNameLabel{
+ 		margin-top:7%;
+ 		margin-right: 10px;
+		font-size: 20px;
+		color: white;
+		font-style: italic;
+		text-align: right;
+ }
+  	
+  	

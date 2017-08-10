@@ -41,6 +41,17 @@ public class MainController {
 		return false;
 	}
 	
+	@RequestMapping("/getLoggedUserName")
+	@ResponseBody
+	public String loggedUserName(HttpServletRequest request){
+		User user = (User)request.getSession().getAttribute("user");
+		if(user != null){
+			return user.getFirstName() + " " + user.getLastName();
+		}
+		
+		return null;
+	}
+	
 	@RequestMapping("/login")
 	public String loginPage(){
 		return "pages/login.html";
@@ -59,6 +70,12 @@ public class MainController {
 		else{
 			return "redirect:/login";
 		}
+	}
+	
+	@RequestMapping("/logout")
+	public String logoutPage(HttpServletRequest request){
+		request.getSession().setAttribute("user", null);
+		return "redirect:/login";
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.POST)
