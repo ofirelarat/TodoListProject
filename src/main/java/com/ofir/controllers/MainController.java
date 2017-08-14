@@ -32,10 +32,11 @@ public class MainController {
 	@RequestMapping("/isLoggedFailed")
 	@ResponseBody
 	public boolean isLoggedFailed(HttpServletRequest request){
-		Object loggedFlag = request.getSession().getAttribute("loggedFailed");
-		if(loggedFlag != null){
-			boolean isFailed = (boolean) loggedFlag;
-				return isFailed;
+		Boolean loginFlag = (Boolean)request.getSession().getAttribute("loggedFailed");
+		request.getSession().setAttribute("loggedFailed", null);
+		
+		if(loginFlag == true){
+			return true;
 		}
 		
 		return false;
@@ -84,12 +85,11 @@ public class MainController {
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");	
 		String remember = request.getParameter("remember");
-		Boolean flag = false;
 		try {
 			User user = DAO.findUser(email, password);
 			if(user != null){
 				request.getSession().setAttribute("user", user);
-				request.getSession().setAttribute("loggedFailed", flag);
+				request.getSession().setAttribute("loggedFailed", false);
 				if(remember != null){
 					response.addCookie(new Cookie("userId",String.valueOf(user.getId())));
 				}
@@ -97,7 +97,7 @@ public class MainController {
 				return "redirect:/itemsPage";
 			}
 			else{
-				request.getSession().setAttribute("loggedFailed", flag);
+				request.getSession().setAttribute("loggedFailed", true);
 				return "redirect:/login";
 			}
 		} catch (ToDoListDaoException e) {
