@@ -5,7 +5,7 @@
 In this website you will manage your todo items.
 
  ## Featurs
-  - Login / Logout 
+  - Login / Logout
   - Register
   - Add todo item
   - Delete todo item
