@@ -42,6 +42,19 @@ public class MainController {
 		return false;
 	}
 	
+	@RequestMapping("/isRegisterFailed")
+	@ResponseBody
+	public boolean isRegisterFailed(HttpServletRequest request){
+		Boolean loginFlag = (Boolean)request.getSession().getAttribute("registerFailed");
+		request.getSession().setAttribute("registerFailed", null);
+		
+		if(loginFlag == true){
+			return true;
+		}
+		
+		return false;
+	}
+	
 	@RequestMapping("/getLoggedUserName")
 	@ResponseBody
 	public String loggedUserName(HttpServletRequest request){
@@ -122,12 +135,15 @@ public class MainController {
 		try {
 			if(DAO.addUser(user))
 			{
+				request.getSession().setAttribute("registerFailed", false);
 				return "redirect:/login";
 			}
 		} catch (ToDoListDaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		request.getSession().setAttribute("registerFailed", true);
 		return "redirect:/register";
 	}
 	

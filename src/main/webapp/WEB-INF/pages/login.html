@@ -7,7 +7,7 @@
       type="image/png" 
       href="pages/images/todolist-icon.png">
       
-<!-- Compiled and minified CSS -->
+	<!-- Compiled and minified CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css">
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
@@ -24,7 +24,7 @@
 	
 		$.get("/isLoggedFailed",function(data,status){
 			if(data == true){
-				alert("email or password not correct");
+				document.getElementById("loginFailed").style.display = "block";
 			}
 		});
 	
@@ -66,6 +66,8 @@
     					<i class="material-icons right">send</i>
   					  </button>
 				    </form>
+				    
+				    <p id="loginFailed">email or password not correct</p>
 				  </div>
 				  
 			  </div>

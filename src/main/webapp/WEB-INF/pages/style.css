@@ -67,7 +67,18 @@ body{
   		text-size: 30px;
   	}   
   	
+ /* REGISTER AND LOGIN FAILED MASSAGE
+-------------------------------------------------- */
+	#regiterFailed , #loginFailed {
+  		text-size: 35px;
+  		color: #e74c3c;
+  		font-style: italic;
+  		display: none;
+  		margin-top: 15px;
+  		margin-left: 15px;
+  	}   
   	
+  	 	
 /* LOG OUT BLOCK
 -------------------------------------------------- */
  	.logoutBtn{
@@ -87,5 +98,8 @@ body{
 		font-style: italic;
 		text-align: right;
  }
+ 
+ 
+ 
   	
   	

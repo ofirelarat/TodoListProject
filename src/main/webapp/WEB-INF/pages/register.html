@@ -12,12 +12,23 @@
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	
 	<!-- Compiled and minified JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js'></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.6/js/materialize.min.js'></script>
 	    
 	<!-- Custom styles for this template -->          
 	<link href="pages/style.css" rel="stylesheet">
 </head>
 <body>
+
+<script>
+	
+		$.get("/isRegisterFailed",function(data,status){
+			if(data == true){
+				document.getElementById("regiterFailed").style.display = "block";
+			}
+		});
+	
+	</script>
 	
 	<div class="colored-background-section">
             <div class="color-wrapper">
@@ -62,6 +73,8 @@
     					<i class="material-icons right">send</i>
   					  </button>
 				    </form>
+				    
+				    <p id="regiterFailed">email already exist in the system</p>
 				  </div>
 				  
 			  </div>
