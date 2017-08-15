@@ -87,8 +87,9 @@ public class MainController {
 	}
 	
 	@RequestMapping("/logout")
-	public String logoutPage(HttpServletRequest request){
+	public String logoutPage(HttpServletRequest request,HttpServletResponse response){
 		request.getSession().setAttribute("user", null);
+		response.addCookie(new Cookie("userId", null));
 		return "redirect:/login";
 	}
 	
@@ -221,7 +222,25 @@ public class MainController {
 	}
 	
 	@RequestMapping("/*")
-	public String openPage(){
+	public String openPage(HttpServletRequest request){
+		for (Cookie coockie: request.getCookies()) {
+			if(coockie.getName().equals("userId") && coockie.getValue() != null){
+				IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
+				try {
+					User user = DAO.getUser(Integer.valueOf(coockie.getValue()));
+					request.getSession().setAttribute("user", user);
+
+					return "redirect:/itemsPage";
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ToDoListDaoException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		} 
+		
 		return  "pages/open-page.html";
 	}
 }
