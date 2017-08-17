@@ -5,8 +5,8 @@
 			var itemsStrArray = [];
 			var index = 0;
 			
-			getPageData();
-			
+			getPageData(true);
+	
 			$.get("/getLoggedUserName",function(data,status){
 				document.getElementById("userNameLabel").innerHTML = "Hi, " + data;
 			});
@@ -15,7 +15,7 @@
 				  $('.modal-trigger').leanModal();
 				});
 			
-			function getPageData(){
+			function getPageData(isInitData){
 				$.get("/items",function(data,status){
 					itemsStrArray = data.split("-");
 					
@@ -23,34 +23,41 @@
 					renderData2();
 					renderData3();
 					
-					var i;
-					var pagesCount = itemsStrArray.length/3;
-					if(itemsStrArray.length%3 != 0 && itemsStrArray.length>3){
-						pagesCount++;
+					if(isInitData == true){
+						renderPageNumbersList();
 					}
-					var numberListElement = document.getElementById("pageNumsList");
-					for(i=2;i<=pagesCount;i++){
-						var node = document.createElement("LI");
-						node.setAttribute("id","page"+i);
-						var nodeClick = document.createElement("A");
-						nodeClick.innerHTML = i;
-						node.appendChild(nodeClick);
-						numberListElement.appendChild(node);
-					}
-					
-					var node = document.createElement("LI");
-					node.setAttribute("class","waves-effect");
-					var nodeClick = document.createElement("a");
-					nodeClick.setAttribute("href","javascript:nextPage()")
-					var nodeIco = document.createElement("I");
-					nodeIco.setAttribute("class","material-icons");
-					nodeIco.innerHTML = "chevron_right";
-					nodeClick.appendChild(nodeIco);
-					node.appendChild(nodeClick); 
-					numberListElement.appendChild(node);
 				});
 			}
 			
+			
+			function renderPageNumbersList(){
+				var i;
+				var pagesCount = itemsStrArray.length/3;
+				if(itemsStrArray.length%3 != 0 && itemsStrArray.length>3){
+					pagesCount++;
+				}
+				var numberListElement = document.getElementById("pageNumsList");
+				
+				for(i=2;i<=pagesCount;i++){
+					var node = document.createElement("LI");
+					node.setAttribute("id","page"+i);
+					var nodeClick = document.createElement("A");
+					nodeClick.innerHTML = i;
+					node.appendChild(nodeClick);
+					numberListElement.appendChild(node);
+				}
+				
+				var rightArrownNode = document.createElement("LI");
+				rightArrownNode.setAttribute("class","waves-effect");
+				var nodeClick = document.createElement("a");
+				nodeClick.setAttribute("href","javascript:nextPage()")
+				var nodeIco = document.createElement("I");
+				nodeIco.setAttribute("class","material-icons");
+				nodeIco.innerHTML = "chevron_right";
+				nodeClick.appendChild(nodeIco);
+				rightArrownNode.appendChild(nodeClick); 
+				numberListElement.appendChild(rightArrownNode);
+			}
 			
 			function renderData1(){
 				if(index < itemsStrArray.length){
@@ -144,6 +151,21 @@
 					$('#page'+((index+3)/3)).removeClass("active");			
 					$('#page'+index/3).addClass("active");
 				}
+			}
+			
+			function editItem(){
+				var title = document.getElementById("titleModal").value;
+				var content = document.getElementById("contentModal").value;
+				var status = document.getElementById("statusModal").value;
+				var id = document.getElementById("itemIdModal").value;
+				
+				var urlParams = "?title=" + title + "&content=" + content + "&status=" + status + "&id=" + id;
+				$.post("editItemT" + urlParams,function(data,status){
+					if(data == true){
+						index = 0;
+						getPageData(false);
+					}
+				});
 			}
 			
 			

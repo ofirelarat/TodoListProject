@@ -12,7 +12,7 @@ public class Item
 	{
 		ready,
 		inProgress,
-		finish;
+		done;
 	}
     
     public Item()

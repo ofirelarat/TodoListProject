@@ -222,6 +222,23 @@ public class MainController {
 	}
 	
 	
+	@RequestMapping(value="/editItemT", method=RequestMethod.POST)
+	@ResponseBody
+	public boolean addItemT(HttpServletRequest request,@RequestParam("title") String title,@RequestParam("content") String content,@RequestParam("status")String status,@RequestParam("id") int id){
+		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
+		User user = (User)request.getSession().getAttribute("user");
+		Item item = new Item(id,title,content,Item.Status.valueOf(status),user.getEmail());
+		try {
+			DAO.editItem(item);
+			return true;
+		} catch (ToDoListDaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return  false;
+		}
+	}
+	
+	
 	@RequestMapping("/*")
 	public String openPage(HttpServletRequest request){
 		for (Cookie coockie: request.getCookies()) {
