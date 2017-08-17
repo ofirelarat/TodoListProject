@@ -221,6 +221,7 @@ public class MainController {
 		return null;
 	}
 	
+	
 	@RequestMapping("/*")
 	public String openPage(HttpServletRequest request){
 		for (Cookie coockie: request.getCookies()) {
