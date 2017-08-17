@@ -167,23 +167,19 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/editItem", method=RequestMethod.POST)
-	public String editItem(HttpServletRequest request){
+	@ResponseBody
+	public boolean addItemT(HttpServletRequest request,@RequestParam("title") String title,@RequestParam("content") String content,@RequestParam("status")String status,@RequestParam("id") int id){
 		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String status = request.getParameter("status");
-		int id = Integer.valueOf(request.getParameter("itemId"));
-
 		User user = (User)request.getSession().getAttribute("user");
 		Item item = new Item(id,title,content,Item.Status.valueOf(status),user.getEmail());
 		try {
 			DAO.editItem(item);
+			return true;
 		} catch (ToDoListDaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return  false;
 		}
-		
-		return "redirect:/itemsPage";
 	}
 	
 	@RequestMapping(value="/deleteItem", method=RequestMethod.POST)
@@ -220,24 +216,6 @@ public class MainController {
 		
 		return null;
 	}
-	
-	
-	@RequestMapping(value="/editItemT", method=RequestMethod.POST)
-	@ResponseBody
-	public boolean addItemT(HttpServletRequest request,@RequestParam("title") String title,@RequestParam("content") String content,@RequestParam("status")String status,@RequestParam("id") int id){
-		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		User user = (User)request.getSession().getAttribute("user");
-		Item item = new Item(id,title,content,Item.Status.valueOf(status),user.getEmail());
-		try {
-			DAO.editItem(item);
-			return true;
-		} catch (ToDoListDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return  false;
-		}
-	}
-	
 	
 	@RequestMapping("/*")
 	public String openPage(HttpServletRequest request){

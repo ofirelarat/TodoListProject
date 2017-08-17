@@ -160,7 +160,7 @@
 				var id = document.getElementById("itemIdModal").value;
 				
 				var urlParams = "?title=" + title + "&content=" + content + "&status=" + status + "&id=" + id;
-				$.post("editItemT" + urlParams,function(data,status){
+				$.post("editItem" + urlParams,function(data,status){
 					if(data == true){
 						index = 0;
 						getPageData(false);
