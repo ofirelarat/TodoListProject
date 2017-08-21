@@ -20,11 +20,11 @@ The website built with JAVA for the server side and use this technogolies:
 
 ## Screenshots
 
- <img src="images/open-page.PNG" align="left" height="300" width="200" >
+ <img src="images/open-page.PNG" align="left" height="450" width="300" >
 
- <img src="images/login.PNG" align="center" height="300" width="200" >
+ <img src="images/login.PNG" align="center" height="450" width="300" >
  
- <img src="images/register.PNG" align="left" height="300" width="200" >
+ <img src="images/register.PNG" align="left" height="450" width="300" >
  
- <img src="images/items.PNG" align="center" height="300" width="200" >
+ <img src="images/items.PNG" align="center" height="450" width="300" >
 
