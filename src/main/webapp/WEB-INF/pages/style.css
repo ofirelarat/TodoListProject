@@ -11,6 +11,12 @@ body{
 	width: 50%;
 }
 
+@media only screen and (max-width: 500px) {
+    .small-container {
+        width: 90%;
+    }
+}
+
 .medium-container{
 	width: 60%;
 }
@@ -59,6 +65,37 @@ body{
      	margin-left: 25px;
      }
      
+     
+     @media only screen and (max-width: 500px) {
+     .colored-background-section{
+    	height: 90px;
+    	margin-bottom: 0px;
+ 	}
+ 	
+ 	 .colored-background-section .color-wrapper{
+        position: absolute;
+        width: 100%;
+        height: 90px;
+        left: 0;
+        right: 0;
+        z-index: 0;
+        overflow: hidden;
+        background-color: #34495e;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+    
+     .colored-background-section .color-wrapper h3 {
+     	display: none;
+     }
+    .colored-background-section .color-wrapper img {
+        width: 75px;
+     	height: 75px;
+     	margin-top: 5px;
+    }
+}
 
 /* ITEM DETAILS
 -------------------------------------------------- */
@@ -97,6 +134,9 @@ body{
 		font-style: italic;
 		text-align: right;
  }
+ 
+ 
+ 
  
  
  

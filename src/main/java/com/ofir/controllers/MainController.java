@@ -219,22 +219,26 @@ public class MainController {
 	
 	@RequestMapping("/*")
 	public String openPage(HttpServletRequest request){
-		for (Cookie coockie: request.getCookies()) {
-			if(coockie.getName().equals("userId") && coockie.getValue() != null){
-				IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-				try {
-					User user = DAO.getUser(Integer.valueOf(coockie.getValue()));
-					request.getSession().setAttribute("user", user);
-
-					return "redirect:/itemsPage";
-				} catch (NumberFormatException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ToDoListDaoException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+		try{
+			for (Cookie coockie: request.getCookies()) {
+				if(coockie.getName().equals("userId") && coockie.getValue() != null){
+					IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
+					try {
+						User user = DAO.getUser(Integer.valueOf(coockie.getValue()));
+						request.getSession().setAttribute("user", user);
+	
+						return "redirect:/itemsPage";
+					} catch (NumberFormatException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					} catch (ToDoListDaoException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 			}
+		}catch (Exception e) {
+			// TODO: handle exception
 		} 
 		
 		return  "pages/open-page.html";
