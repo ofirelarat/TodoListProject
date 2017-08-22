@@ -168,5 +168,17 @@
 				});
 			}
 			
+			function editItemDialog(itemNum){
+				var title = document.getElementById("titleModal");
+				var content = document.getElementById("contentModal");
+				var status = document.getElementById("statusModal");
+				var id = document.getElementById("itemIdModal");
+				
+				title.value = document.getElementById("title" + itemNum).innerHTML;
+				content.value = document.getElementById("content" + itemNum).innerHTML;
+				status.value = document.getElementById("status" + itemNum).innerHTML;
+				id.value = document.getElementById("itemId" + itemNum).value;
+			}
+			
 			
 			
