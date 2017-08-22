@@ -219,7 +219,7 @@ public class MainController {
 	
 	@RequestMapping("/*")
 	public String openPage(HttpServletRequest request){
-		try{
+		if(request != null && request.getCookies() != null){
 			for (Cookie coockie: request.getCookies()) {
 				if(coockie.getName().equals("userId") && coockie.getValue() != null){
 					IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
@@ -237,9 +237,7 @@ public class MainController {
 					}
 				}
 			}
-		}catch (Exception e) {
-			// TODO: handle exception
-		} 
+		}
 		
 		return  "pages/open-page.html";
 	}
