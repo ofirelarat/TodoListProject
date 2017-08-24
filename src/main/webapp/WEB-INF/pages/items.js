@@ -135,7 +135,7 @@
 			}
 			
 			function prevPage(){
-				if(index > 2){
+				if(index > 3){
 					if(index%3 == 0){
 						index -= 6;
 					}else if(index%3 == 2){
