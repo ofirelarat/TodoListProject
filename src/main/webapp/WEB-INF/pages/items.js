@@ -38,9 +38,23 @@
 				}
 				var numberListElement = document.getElementById("pageNumsList");
 				
-				for(i=2;i<=pagesCount;i++){
+				var leftArrownNode = document.createElement("LI");
+				leftArrownNode.setAttribute("class","waves-effect");
+				var nodeClick = document.createElement("a");
+				nodeClick.setAttribute("href","javascript:prevPage()")
+				var nodeIco = document.createElement("I");
+				nodeIco.setAttribute("class","material-icons");
+				nodeIco.innerHTML = "chevron_left";
+				nodeClick.appendChild(nodeIco);
+				leftArrownNode.appendChild(nodeClick); 
+				numberListElement.appendChild(leftArrownNode);
+				
+				for(i=1;i<=pagesCount;i++){
 					var node = document.createElement("LI");
 					node.setAttribute("id","page"+i);
+					if(i==1){
+						node.setAttribute("class","active");
+					}
 					var nodeClick = document.createElement("A");
 					nodeClick.innerHTML = i;
 					node.appendChild(nodeClick);
