@@ -82,7 +82,7 @@ public class MainController {
 			return "pages/items.html";
 		}
 		else{
-			return "redirect:/login";
+			return "redirect:/*";
 		}
 	}
 	
