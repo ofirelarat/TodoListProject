@@ -1,0 +1,18 @@
+@CHARSET "windows-1255";body{background-color:#95a5a6;}
+.small-container{width:50%;}
+@media only screen and (max-width:500px){.small-container{width:90%;}
+}
+.medium-container{width:60%;}
+.colored-background-section{height:150px;margin-bottom:0px;}
+.colored-background-section .color-wrapper{position:absolute;width:100%;height:150px;left:0;right:0;z-index:0;overflow:hidden;background-color:#34495e;background-attachment:fixed;background-repeat:no-repeat;background-position:center;background-size:cover;}
+.colored-background-section .color-wrapper h3{max-width:100%;max-height:100px;margin:0 auto;margin-top:20px;margin-bottom:20px;margin-left:200px;position:absolute;bottom:0;font-size:35px;color:#fff;line-height:45px;letter-spacing:0.5px;}
+.colored-background-section .color-wrapper img{width:100px;height:100px;margin-top:40px;margin-left:25px;}
+@media only screen and (max-width:500px){.colored-background-section{height:90px;margin-bottom:0px;}
+.colored-background-section .color-wrapper{position:absolute;width:100%;height:90px;left:0;right:0;z-index:0;overflow:hidden;background-color:#34495e;background-attachment:fixed;background-repeat:no-repeat;background-position:center;background-size:cover;}
+.colored-background-section .color-wrapper h3{display:none;}
+.colored-background-section .color-wrapper img{width:75px;height:75px;margin-top:5px;}
+}
+#content1 , #content2 , #content3{text-size:30px;}
+#regiterFailed , #loginFailed{text-size:35px;color:#e74c3c;font-style:italic;display:none;margin-top:15px;margin-left:15px;}
+.logoutBtn{margin-top:7.25%;margin-right:10px;width:30px;height:30px;color:white;text-align:right;}
+.userNameLabel{margin-top:7%;margin-right:10px;font-size:20px;color:white;font-style:italic;text-align:right;}
