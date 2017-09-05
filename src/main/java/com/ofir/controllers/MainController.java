@@ -149,11 +149,8 @@ public class MainController {
 	}
 	
 	@RequestMapping(value="/addItem", method=RequestMethod.POST)
-	public String addItem(HttpServletRequest request){
+	public String addItem(HttpServletRequest request,@RequestParam("title") String title,@RequestParam("content") String content,@RequestParam("status")String status){
 		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		String title = request.getParameter("title");
-		String content = request.getParameter("content");
-		String status = request.getParameter("status");
 		User user = (User)request.getSession().getAttribute("user");
 		Item item = new Item(title,content,Item.Status.valueOf(status),user.getEmail());
 		try {
@@ -180,20 +177,6 @@ public class MainController {
 			e.printStackTrace();
 			return  false;
 		}
-	}
-	
-	@RequestMapping(value="/deleteItem", method=RequestMethod.POST)
-	public String deleteItem(HttpServletRequest request){
-		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		int id = Integer.valueOf(request.getParameter("itemId"));
-		try {
-			DAO.deleteItem(id);
-		} catch (ToDoListDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		return "redirect:/itemsPage";
 	}
 	
 	@RequestMapping("/items")

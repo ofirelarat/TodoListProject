@@ -16,6 +16,7 @@
 				});
 			
 			function getPageData(isInitData){
+				index = 0;
 				$.get("/items",function(data,status){
 					itemsStrArray = data.split("-");
 					
@@ -176,7 +177,6 @@
 				var urlParams = "?title=" + title + "&content=" + content + "&status=" + status + "&id=" + id;
 				$.post("editItem" + urlParams,function(data,status){
 					if(data == true){
-						index = 0;
 						getPageData(false);
 					}
 				});
@@ -201,9 +201,20 @@
 					type: "DELETE",
 					success: function(result){
 						$("#pageNumsList").html("");
-						index = 0;
 						getPageData(true);
 					}
+				});
+			}
+			
+			function addItem(){
+				var title = document.getElementById("titleAddItem").value;
+				var content = document.getElementById("contentAddItem").value;
+				var status = document.getElementById("statusAddItem").value;
+				
+				var urlParams = "?title=" + title + "&content=" + content + "&status=" + status;
+				$.post("/addItem" + urlParams,function(data,status){
+					$("#pageNumsList").html("");
+					getPageData(true);
 				});
 			}
 			
