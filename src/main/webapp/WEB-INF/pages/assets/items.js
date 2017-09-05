@@ -33,7 +33,7 @@
 			function renderPageNumbersList(){
 				var i;
 				var pagesCount = itemsStrArray.length/3;
-				if(itemsStrArray.length%3 != 0 && itemsStrArray.length>3){
+				if(itemsStrArray.length%3 != 0){
 					pagesCount++;
 				}
 				var numberListElement = document.getElementById("pageNumsList");
@@ -192,6 +192,19 @@
 				content.value = document.getElementById("content" + itemNum).innerHTML;
 				status.value = document.getElementById("status" + itemNum).innerHTML;
 				id.value = document.getElementById("itemId" + itemNum).value;
+			}
+			
+			function deleteItem(itemNum){
+				var id = document.getElementById("itemId" + itemNum).value;
+				$.ajax({
+					url: "/api/item/" + id,
+					type: "DELETE",
+					success: function(result){
+						$("#pageNumsList").html("");
+						index = 0;
+						getPageData(true);
+					}
+				});
 			}
 			
 			
