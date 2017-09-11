@@ -6,7 +6,7 @@
     	"sizes": "192x192"
   	},
     
-  	"start_url": "open-page.html",
+  	"start_url": "/open-page",
   	"display": "standalone",
   	"orientation": "portrait"
 }
