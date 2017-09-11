@@ -1,0 +1,12 @@
+{
+	"name": "Todo List",
+  	"description": "This app helps you to save your todo items.",
+  	"icon": {
+    	"src": "images/todolist-icon.png",
+    	"sizes": "192x192"
+  	},
+    
+  	"start_url": "open-page.html",
+  	"display": "standalone",
+  	"orientation": "portrait"
+}
