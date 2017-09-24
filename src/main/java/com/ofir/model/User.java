@@ -71,7 +71,18 @@ public class User
 	{
 		this.password = password;
 	}
-
+ 
+	public boolean isUserXssProof(){
+		String[] specialText = {"<", ">","\'","&","\""};
+		for (String txt : specialText) {
+			if(this.firstName.contains(txt) || this.lastName.contains(txt) || this.email.contains(txt) || this.password.contains(txt)){
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	@Override
 	public String toString()
 	{

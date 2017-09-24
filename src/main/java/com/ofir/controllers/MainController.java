@@ -134,10 +134,12 @@ public class MainController {
 		String lastName = request.getParameter("lastName");
 		User user = new User(email,firstName,lastName,password);
 		try {
-			if(DAO.addUser(user))
-			{
-				request.getSession().setAttribute("registerFailed", false);
-				return "redirect:/login";
+			if(user.isUserXssProof()){
+				if(DAO.addUser(user))
+				{
+					request.getSession().setAttribute("registerFailed", false);
+					return "redirect:/login";
+				}
 			}
 		} catch (ToDoListDaoException e) {
 			// TODO Auto-generated catch block
@@ -154,7 +156,9 @@ public class MainController {
 		User user = (User)request.getSession().getAttribute("user");
 		Item item = new Item(title,content,Item.Status.valueOf(status),user.getEmail());
 		try {
-			DAO.addItem(item);
+			if(item.isItemXssProof()){
+				DAO.addItem(item);
+			}
 		} catch (ToDoListDaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -170,7 +174,9 @@ public class MainController {
 		User user = (User)request.getSession().getAttribute("user");
 		Item item = new Item(id,title,content,Item.Status.valueOf(status),user.getEmail());
 		try {
-			DAO.editItem(item);
+			if(item.isItemXssProof()){
+				DAO.editItem(item);
+			}
 			return true;
 		} catch (ToDoListDaoException e) {
 			// TODO Auto-generated catch block

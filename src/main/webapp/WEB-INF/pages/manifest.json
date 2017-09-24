@@ -1,6 +1,7 @@
 {
 	"name": "Todo List",
   	"description": "This app helps you to save your todo items.",
+  	"version": "1.0",
   	"icon": {
     	"src": "images/todolist-icon.png",
     	"sizes": "192x192"

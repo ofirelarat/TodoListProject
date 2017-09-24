@@ -87,6 +87,17 @@ public class Item
 		this.status = status;
 	}
 	
+	public boolean isItemXssProof(){
+		String[] specialText = {"<", ">","\'","&","\""};
+		for (String txt : specialText) {
+			if(this.title.contains(txt) || this.content.contains(txt)){
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
 	@Override
 	public String toString()
 	{
