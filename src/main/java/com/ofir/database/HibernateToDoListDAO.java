@@ -80,8 +80,11 @@ public class HibernateToDoListDAO implements IToDoListDAO
 		try{
 			session.beginTransaction();
 			//User searching in DB by email and password
-			String hql = String.format("FROM User U WHERE U.email = '%s' and U.password = '%s'",email,password);
-			List users = session.createQuery(hql).list();
+			String hql = String.format("FROM User U WHERE U.email=:email and U.password=:password");
+			Query query = session.createQuery(hql);
+			query.setParameter("email", email);
+			query.setParameter("password", password);
+			List users = query.list();
 			session.getTransaction().commit();
 			if(users.size() > 0)
 			{
