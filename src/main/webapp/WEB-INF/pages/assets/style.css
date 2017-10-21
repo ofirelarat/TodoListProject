@@ -68,8 +68,11 @@ body {
 }
 
 .logoutBtn {
-	margin-top:7.25%;
-	margin-right:10px;
+	float: right;
+	margin: 0 10px 20px 0;
+	position: absolute;
+	bottom: 0;
+	right: 20px;
 	width:30px;
 	height:30px;
 	color:#FFF;
@@ -77,15 +80,18 @@ body {
 }
 
 .userNameLabel {
-	margin-top:7%;
-	margin-right:10px;
+	right: 55px;
+	float: right;
+	margin: 0 10px 23px 0;
+	position: absolute;
+	bottom: 0;
 	font-size:20px;
 	color:#FFF;
 	font-style:italic;
 	text-align:right;
 }
 
-@media only screen and max-width500px{
+@media only screen and (max-width:1000px){
 	.small-container {
 		width:90%;
 	}
