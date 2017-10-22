@@ -134,7 +134,7 @@ public class MainController {
 		String lastName = request.getParameter("lastName");
 		User user = new User(email,firstName,lastName,password);
 		try {
-			if(user.isUserXssProof()){
+			if(user.xssProofing()){
 				if(DAO.addUser(user))
 				{
 					request.getSession().setAttribute("registerFailed", false);
@@ -156,7 +156,7 @@ public class MainController {
 		User user = (User)request.getSession().getAttribute("user");
 		Item item = new Item(title,content,Item.Status.valueOf(status),user.getEmail());
 		try {
-			if(item.isItemXssProof()){
+			if(item.xssProofing()){
 				DAO.addItem(item);
 			}
 		} catch (ToDoListDaoException e) {
@@ -174,7 +174,7 @@ public class MainController {
 		User user = (User)request.getSession().getAttribute("user");
 		Item item = new Item(id,title,content,Item.Status.valueOf(status),user.getEmail());
 		try {
-			if(item.isItemXssProof()){
+			if(item.xssProofing()){
 				DAO.editItem(item);
 			}
 			return true;
@@ -206,7 +206,7 @@ public class MainController {
 		return null;
 	}
 	
-	@RequestMapping("/*")
+	@RequestMapping("/")
 	public String openPage(HttpServletRequest request){
 		if(request != null && request.getCookies() != null){
 			for (Cookie coockie: request.getCookies()) {

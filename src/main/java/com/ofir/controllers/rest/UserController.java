@@ -1,80 +1,79 @@
-package com.ofir.controllers;
+package com.ofir.controllers.rest;
 
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ofir.database.HibernateToDoListDAO;
 import com.ofir.database.IToDoListDAO;
 import com.ofir.exception.ToDoListDaoException;
-import com.ofir.model.Item;
 import com.ofir.model.User;
 
 @RestController
-@RequestMapping("/api/item")
-public class ItemController {
-
-	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public Item getItem(@PathVariable int id){
-		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		try {
-			return DAO.findItem(id);
-		} catch (ToDoListDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
+@RequestMapping("/api/user")
+public class UserController {
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public Item[] userItems(@RequestParam(value = "userId",required=false) Integer id){
+	public User[] getAllUsers(){
 		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		User user;
+		User[] users = null;
 		try {
-			if(id == null){
-				return DAO.getAllItems();
-			}
-			else{
-			user = DAO.getUser(id);
-			return DAO.getItemsOfUser(user);
-			}
+			users = DAO.getAllUsers();
 		} catch (ToDoListDaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return null;
 		}
+		
+		return users;
+	}
+	
+	@RequestMapping(value="/{id}",method=RequestMethod.GET)
+	public User getUserById(@PathVariable int id){
+		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
+		User user = null;
+		try {
+			user = DAO.getUser(id);
+		} catch (ToDoListDaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return user;
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public void addItem(@RequestBody Item item){
+	public boolean addUser(@RequestBody User user){
 		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
 		try {
-			DAO.addItem(item);
+			return DAO.addUser(user);
 		} catch (ToDoListDaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-	}
-	
-	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public void deleteItem(@PathVariable int id){
-		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		try {
-			DAO.deleteItem(id);
-		} catch (ToDoListDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			return false;
 		}
 	}
 	
 	@RequestMapping(method=RequestMethod.PATCH)
-	public void editItem(@RequestBody Item item){
+	public boolean editUser(@RequestBody User user){
 		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
 		try {
-			DAO.editItem(item);
+			DAO.editUser(user);
+			return true;
+		} catch (ToDoListDaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
+	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
+	public void deleteUser(@PathVariable int id){
+		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
+		try {
+			DAO.deleteUser(id);
 		} catch (ToDoListDaoException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

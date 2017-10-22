@@ -72,7 +72,7 @@ public class User
 		this.password = password;
 	}
  
-	public boolean isUserXssProof(){
+	public boolean xssProofing(){
 		String[] specialText = {"<", ">","\'","&","\""};
 		for (String txt : specialText) {
 			if(this.firstName.contains(txt) || this.lastName.contains(txt) || this.email.contains(txt) || this.password.contains(txt)){
