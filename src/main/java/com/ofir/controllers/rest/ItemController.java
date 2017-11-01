@@ -31,6 +31,17 @@ public class ItemController {
 
 	@RequestMapping(method=RequestMethod.GET)
 	public Item[] getItems(@RequestParam("userID") int userId){
+		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
+		try {
+			User user = DAO.getUser(userId);
+			Item[] items = DAO.getItemsOfUser(user);
+			
+			return items;
+		} catch (ToDoListDaoException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return null;
 	}
 	

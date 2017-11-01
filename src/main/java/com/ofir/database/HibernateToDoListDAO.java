@@ -81,10 +81,10 @@ public class HibernateToDoListDAO implements IToDoListDAO
 			session.beginTransaction();
 			//User searching in DB by email and password
 			String hql = String.format("FROM User U WHERE U.email=:email and U.password=:password");
-			Query query = session.createQuery(hql);
+			Query<User> query = session.createQuery(hql);
 			query.setParameter("email", email);
 			query.setParameter("password", password);
-			List users = query.list();
+			List<User> users = query.getResultList();
 			session.getTransaction().commit();
 			if(users.size() > 0)
 			{
@@ -293,13 +293,13 @@ public class HibernateToDoListDAO implements IToDoListDAO
 	public Item[] getItemsOfUser(User user) throws ToDoListDaoException
 	{
 		Session session = factory.openSession();
-		List items = null;
+		List<Item> items = null;
 		try{
 			session.beginTransaction();
 			//Find the items of a specific user by the user email.
 			String hql = String.format("FROM Item I WHERE I.userEmail = '%s'", user.getEmail());
-			Query query = session.createQuery(hql);
-			items =  query.list();
+			Query<Item> query = session.createQuery(hql);
+			items =  query.getResultList();
 			session.getTransaction().commit();
 		}
 		catch (HibernateException e) {
