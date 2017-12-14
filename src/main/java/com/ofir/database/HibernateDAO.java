@@ -77,14 +77,12 @@ public class HibernateDAO <T> implements Creatable<T>,Readable<T>,Updatable<T>, 
 		Session session = HibernateConnect.getSesstion().openSession();
 		Optional<T> optionalObject = Optional.empty();
 		try{
-			session.beginTransaction();
 			if(id.getClass().getName().equals("Integer")){
 				T object = (T) session.get(this.objectClass, (int)id);
 				if(object != null){
 					optionalObject = Optional.of(object);
 				}
 			}
-			session.getTransaction().commit();
 		}
 		catch (HibernateException e) {
 			session.getTransaction().rollback();
@@ -101,7 +99,6 @@ public class HibernateDAO <T> implements Creatable<T>,Readable<T>,Updatable<T>, 
 	public List<T> readAll() {
 		Session session = HibernateConnect.getSesstion().openSession();
 		List<T> objectList = Collections.emptyList();
-		session.beginTransaction();
 		objectList = session.createCriteria(objectClass).list();
 		session.close();
 		
