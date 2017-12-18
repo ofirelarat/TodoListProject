@@ -77,7 +77,7 @@ public class HibernateDAO <T> implements Creatable<T>,Readable<T>,Updatable<T>, 
 		Session session = HibernateConnect.getSesstion().openSession();
 		Optional<T> optionalObject = Optional.empty();
 		try{
-			if(id.getClass().getName().equals("Integer")){
+			if(id.getClass().getTypeName().equals("java.lang.Integer")){
 				T object = (T) session.get(this.objectClass, (int)id);
 				if(object != null){
 					optionalObject = Optional.of(object);

@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.ofir.database.HibernateToDoListDAO;
-import com.ofir.database.IToDoListDAO;
 import com.ofir.database.ItemHibernateDAO;
 import com.ofir.database.UserHibernateDAO;
 import com.ofir.exception.ToDoListDaoException;
@@ -79,7 +77,7 @@ public class MainController {
 			return "pages/items.html";
 		}
 		else{
-			return "redirect:/*";
+			return "redirect:/";
 		}
 	}
 	
