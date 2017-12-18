@@ -1,5 +1,9 @@
 package com.ofir.controllers.rest;
 
+import java.util.Collections;
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -9,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ofir.database.HibernateToDoListDAO;
 import com.ofir.database.IToDoListDAO;
+import com.ofir.database.ItemHibernateDAO;
+import com.ofir.database.UserHibernateDAO;
 import com.ofir.exception.ToDoListDaoException;
 import com.ofir.model.Item;
 import com.ofir.model.User;
@@ -18,63 +24,58 @@ import com.ofir.model.User;
 public class ItemController {
 
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public Item getItem(@PathVariable int id){
-		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		try {
-			return DAO.findItem(id);
-		} catch (ToDoListDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
+	public Item getItem(@PathVariable int id) throws ToDoListDaoException{
+		ItemHibernateDAO DAO = new ItemHibernateDAO();
+		
+			Optional<Item> optionalItem = DAO.read(id);
+			if(optionalItem.isPresent()){
+				return optionalItem.get();
+			}
+		
+		throw new NullPointerException("item not found");
 	}
 
 	@RequestMapping(method=RequestMethod.GET)
-	public Item[] getItems(@RequestParam("userID") int userId){
-		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		try {
-			User user = DAO.getUser(userId);
-			Item[] items = DAO.getItemsOfUser(user);
-			
-			return items;
-		} catch (ToDoListDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public Item[] getItems(@RequestParam("userID") int userId) throws ToDoListDaoException{
+		ItemHibernateDAO DAO = new ItemHibernateDAO();
+		UserHibernateDAO userDAO = new UserHibernateDAO();
 		
-		return null;
+		Optional<User> user = userDAO.read(userId);
+		if(user.isPresent()){
+			List<Item> items = DAO.getUserItems(user.get());
+		
+			Item[] itemsArray = new Item[items.size()];
+			itemsArray = items.toArray(itemsArray);
+		
+			return itemsArray;
+		}else{
+			throw new NullPointerException("user not found");
+		}
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public void addItem(@RequestBody Item item){
-		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		try {
-			DAO.addItem(item);
-		} catch (ToDoListDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void addItem(@RequestBody Item item) throws ToDoListDaoException{
+		ItemHibernateDAO DAO = new ItemHibernateDAO();
+		
+		DAO.create(item);
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public void deleteItem(@PathVariable int id){
-		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		try {
-			DAO.deleteItem(id);
-		} catch (ToDoListDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	public void deleteItem(@PathVariable int id) throws ToDoListDaoException{
+		ItemHibernateDAO DAO = new ItemHibernateDAO();
+		Optional<Item> optionalItem = DAO.read(id);
+		if(optionalItem.isPresent()){
+			DAO.delete(optionalItem.get());
+		}
+		else{
+			throw new NullPointerException("item not found");
 		}
 	}
 	
 	@RequestMapping(method=RequestMethod.PATCH)
-	public void editItem(@RequestBody Item item){
-		IToDoListDAO DAO = HibernateToDoListDAO.getInstance();
-		try {
-			DAO.editItem(item);
-		} catch (ToDoListDaoException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void editItem(@RequestBody Item item) throws ToDoListDaoException{
+		ItemHibernateDAO DAO = new ItemHibernateDAO();
+
+		DAO.update(item);
 	}
 }
