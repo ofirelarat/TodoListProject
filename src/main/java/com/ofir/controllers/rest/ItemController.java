@@ -1,6 +1,5 @@
 package com.ofir.controllers.rest;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.ofir.database.HibernateToDoListDAO;
-import com.ofir.database.IToDoListDAO;
 import com.ofir.database.ItemHibernateDAO;
 import com.ofir.database.UserHibernateDAO;
 import com.ofir.exception.ToDoListDaoException;

@@ -32,53 +32,42 @@ public class UserController {
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.GET)
-	public User getUserById(@PathVariable int id){
+	public User getUserById(@PathVariable int id) throws ToDoListDaoException{
 		UserHibernateDAO DAO = new UserHibernateDAO();
-		try {
-			Optional<User> optionalUser = DAO.read(id);
-			if(optionalUser.isPresent()){
-				return optionalUser.get();
-			}
-		} catch (ToDoListDaoException e) {
-			e.printStackTrace();
+
+		Optional<User> optionalUser = DAO.read(id);
+		if(optionalUser.isPresent()){
+			return optionalUser.get();
 		}
-		
-		throw new NullPointerException("user not found");
+		else{
+			throw new NullPointerException("user not found");
+		}
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public void addUser(@RequestBody User user){
+	public void addUser(@RequestBody User user) throws ToDoListDaoException{
 		UserHibernateDAO DAO = new UserHibernateDAO();
-		try {
-			 DAO.create(user);
-		} catch (ToDoListDaoException e) {
-			e.printStackTrace();
-		}
+	
+		 DAO.create(user);	
 	}
 	
 	@RequestMapping(method=RequestMethod.PATCH)
-	public void editUser(@RequestBody User user){
+	public void editUser(@RequestBody User user) throws ToDoListDaoException{
 		UserHibernateDAO DAO = new UserHibernateDAO();
-		try {
-			DAO.update(user);
-		} catch (ToDoListDaoException e) {
-			e.printStackTrace();
-		}
+	
+		DAO.update(user);
 	}
 	
 	@RequestMapping(value="/{id}",method=RequestMethod.DELETE)
-	public void deleteUser(@PathVariable int id){
+	public void deleteUser(@PathVariable int id) throws ToDoListDaoException{
 		UserHibernateDAO DAO = new UserHibernateDAO();
-		try {
-			Optional<User> user = DAO.read(id);
-			if(user.isPresent()){
-				DAO.delete(user.get());
-			}
-			else{
-				throw new NullPointerException("user not found");
-			}
-		} catch (ToDoListDaoException e) {
-			e.printStackTrace();
+
+		Optional<User> user = DAO.read(id);
+		if(user.isPresent()){
+			DAO.delete(user.get());
+		}
+		else{
+			throw new NullPointerException("user not found");
 		}
 	}
 }
