@@ -177,6 +177,7 @@
 				var urlParams = "?title=" + title + "&content=" + content + "&status=" + status + "&id=" + id;
 				$.post("editItem" + urlParams,function(data,status){
 					if(data == true){
+						swal("Update Data!", "Your data item has updated.", "success");
 						getPageData(false);
 					}
 				});
@@ -201,6 +202,7 @@
 					type: "DELETE",
 					success: function(result){
 						$("#pageNumsList").html("");
+						swal("Delete Data!", "Your data item has deleted.", "success");
 						getPageData(true);
 					}
 				});
@@ -214,6 +216,7 @@
 				var urlParams = "?title=" + title + "&content=" + content + "&status=" + status;
 				$.post("/addItem" + urlParams,function(data,status){
 					$("#pageNumsList").html("");
+					swal("Insert Data!", "Your data item has inserted.", "success");
 					getPageData(true);
 				});
 			}
