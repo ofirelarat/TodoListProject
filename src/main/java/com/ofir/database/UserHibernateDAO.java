@@ -74,7 +74,7 @@ public class UserHibernateDAO implements Creatable<User>, Readable<User>, Updata
 
 	private boolean isExist(String email){
 		Session session = HibernateConnect.getSesstion().openSession();
-		String hql = String.format("FROM User U WHERE U.email =: email");
+		String hql = String.format("FROM User U WHERE U.email=:email");
 		Query query = session.createQuery(hql);
 		query.setParameter("email", email);	
 		boolean isExist = query.uniqueResultOptional().isPresent();
